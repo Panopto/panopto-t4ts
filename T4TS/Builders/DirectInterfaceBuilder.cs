@@ -160,10 +160,6 @@ namespace T4TS.Builders
             {
                 name = name.Substring(1);
             }
-            if (this.settings.CamelCase)
-            {
-                name = name.Substring(0, 1).ToLowerInvariant() + name.Substring(1);
-            }
             
             member = new TypeScriptMember
             {

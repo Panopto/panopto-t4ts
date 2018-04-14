@@ -6,31 +6,30 @@ using System.Threading.Tasks;
 
 namespace T4TS.Outputs.Custom
 {
-    public partial class ChangeCaseCopyMethod
+    public partial class CopyMethod
     {
         protected class OutputAppender : MethodAppender
         {
             private TypeScriptType containingType;
-            private TypeReference otherType;
-            private bool toContainingType;
-            private bool toCamelCase;
+            
+            public ICopySettings CopySettings { get; private set; }
+
+            public bool ToContainingType { get; private set; }
 
             public OutputAppender(
                 OutputSettings settings,
                 TypeContext typeContext,
                 TypeScriptType containingType,
-                TypeReference otherType,
-                bool toContainingType,
-                bool toCamelCase)
+                ICopySettings copySettings,
+                bool toContainingType)
                     : base(
                         settings,
                         typeContext,
                         hasBody: true)
             {
                 this.containingType = containingType;
-                this.otherType = otherType;
-                this.toContainingType = toContainingType;
-                this.toCamelCase = toCamelCase;
+                this.CopySettings = copySettings;
+                this.ToContainingType = toContainingType;
             }
 
             protected override void AppendBody(
@@ -44,11 +43,11 @@ namespace T4TS.Outputs.Custom
                     "{");
                 
                 int bodyIndent = indent + 4;
-                
+
                 string toObjectName;
                 string fromObjectName;
 
-                if (this.toContainingType)
+                if (this.ToContainingType)
                 {
                     toObjectName = "this";
                     fromObjectName = method.Arguments.First().Name;
@@ -65,12 +64,7 @@ namespace T4TS.Outputs.Custom
                         this.containingType.Parent.SourceType);
 
                     TypeScriptMethod parentCopyMethod = parentType.Methods.FirstOrDefault(
-                        (currentMethod) =>
-                        {
-                            ChangeCaseCopyMethod.OutputAppender appender = currentMethod.Appender as ChangeCaseCopyMethod.OutputAppender;
-                            return (appender != null
-                                && appender.toContainingType == this.toContainingType);
-                        });
+                        this.CopySettings.IsParentCopyMethod);
 
                     if (parentCopyMethod != null)
                     {
@@ -109,26 +103,26 @@ namespace T4TS.Outputs.Custom
                     "}");
             }
 
-            private void DetermineFieldNames(
-                string baseName,
-                out string toFieldName,
-                out string fromFieldName)
-            {
-                string allExceptFirst = baseName.Substring(1);
-                string camelCase = baseName[0].ToString().ToLower() + allExceptFirst;
-                string pascalCase = baseName[0].ToString().ToUpper() + allExceptFirst;
+            //private void DetermineFieldNames(
+            //    string baseName,
+            //    out string toFieldName,
+            //    out string fromFieldName)
+            //{
+            //    string allExceptFirst = baseName.Substring(1);
+            //    string camelCase = baseName[0].ToString().ToLower() + allExceptFirst;
+            //    string pascalCase = baseName[0].ToString().ToUpper() + allExceptFirst;
                 
-                if (this.toCamelCase)
-                {
-                    toFieldName = camelCase;
-                    fromFieldName = pascalCase;
-                }
-                else
-                {
-                    toFieldName = pascalCase;
-                    fromFieldName = camelCase;
-                }
-            }
+            //    if (this.toCamelCase)
+            //    {
+            //        toFieldName = camelCase;
+            //        fromFieldName = pascalCase;
+            //    }
+            //    else
+            //    {
+            //        toFieldName = pascalCase;
+            //        fromFieldName = camelCase;
+            //    }
+            //}
 
             private void AppendFieldCopy(
                 StringBuilder output,
@@ -138,12 +132,8 @@ namespace T4TS.Outputs.Custom
                 string fromObjectName,
                 TypeScriptMember field)
             {
-                string toFieldName;
-                string fromFieldName;
-                this.DetermineFieldNames(
-                    field.Name,
-                    out toFieldName,
-                    out fromFieldName);
+                string toFieldName = this.CopySettings.GetToFieldName(field.Name);
+                string fromFieldName = this.CopySettings.GetFromFieldName(field.Name);
 
                 this.AppendFieldValueCopy(
                     output,
@@ -175,13 +165,7 @@ namespace T4TS.Outputs.Custom
                         && interfaceType.Methods != null)
                     {
                         copyMethod = interfaceType.Methods.FirstOrDefault(
-                            (fieldInterfaceMethod) =>
-                            {
-                                ChangeCaseCopyMethod.OutputAppender appender =
-                                    fieldInterfaceMethod.Appender as ChangeCaseCopyMethod.OutputAppender;
-                                return (appender != null
-                                    && appender.toContainingType == this.toContainingType);
-                            });
+                            this.CopySettings.IsParentCopyMethod);
                     }
 
                     string rightHandSide;
@@ -233,7 +217,7 @@ namespace T4TS.Outputs.Custom
                 TypeScriptMethod copyMethod)
             {
                 string result;
-                if (this.toContainingType)
+                if (this.ToContainingType)
                 {
                     TypeName outputName = this.TypeContext.ResolveOutputTypeName(interfaceType);
                     result = String.Format(
