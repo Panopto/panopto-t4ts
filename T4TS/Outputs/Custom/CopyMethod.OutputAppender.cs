@@ -262,7 +262,7 @@ namespace T4TS.Outputs.Custom
                     output,
                     indent,
                     String.Format(
-                        "{0}.{1} = new Array({3}.{4}.length);",
+                        "{0}.{1} = new Array(({3}.{4}) ? {3}.{4}.length : 0);",
                         toObjectName,
                         toFieldName,
                         resolvedItemType.QualifiedName,
@@ -275,8 +275,8 @@ namespace T4TS.Outputs.Custom
                     String.Format(
                         "for (var index{0}: number = 0; index{0} < {1}.{2}.length; index{0}++)",
                         indent / 4,
-                        fromObjectName,
-                        fromFieldName));
+                        toObjectName,
+                        toFieldName));
 
                 this.AppendIndentedLine(
                     output,
