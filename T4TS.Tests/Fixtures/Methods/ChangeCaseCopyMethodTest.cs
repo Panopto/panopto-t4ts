@@ -26,7 +26,7 @@ namespace T4TS.Tests.Fixtures.Methods
                         builder.TraverserSettings.TypeDecorators.Add((outputType) =>
                         {
                             string otherTypeLiteral = "T4TSTests.OtherType";
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "FromOther",
@@ -35,7 +35,7 @@ namespace T4TS.Tests.Fixtures.Methods
                                 toContainingType: true,
                                 toCamelCase: false));
 
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "ToOther",
@@ -67,7 +67,7 @@ namespace T4TS.Tests.Fixtures.Methods
                         builder.TraverserSettings.TypeDecorators.Add((outputType) =>
                         {
                             string otherTypeLiteral = "T4TSTests.OtherType";
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "FromOther",
@@ -76,7 +76,7 @@ namespace T4TS.Tests.Fixtures.Methods
                                 toContainingType: true,
                                 toCamelCase: false));
 
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "ToOther",
@@ -108,7 +108,7 @@ namespace T4TS.Tests.Fixtures.Methods
                         builder.TraverserSettings.TypeDecorators.Add((outputType) =>
                         {
                             string otherTypeLiteral = "T4TSTests.OtherType";
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "FromOther",
@@ -117,7 +117,7 @@ namespace T4TS.Tests.Fixtures.Methods
                                 toContainingType: true,
                                 toCamelCase: false));
 
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "ToOther",
@@ -151,7 +151,7 @@ namespace T4TS.Tests.Fixtures.Methods
                         builder.TraverserSettings.TypeDecorators.Add((outputType) =>
                         {
                             string otherTypeLiteral = "T4TSTests.OtherType";
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "FromOther",
@@ -160,7 +160,7 @@ namespace T4TS.Tests.Fixtures.Methods
                                 toContainingType: true,
                                 toCamelCase: false));
 
-                            outputType.Methods.Add(T4TS.Outputs.Custom.ChangeCaseCopyMethod.Create(
+                            outputType.Methods.Add(T4TS.Outputs.Custom.CopyMethod.ChangeCaseCopy(
                                 builder.OutputSettings,
                                 builder.TypeContext,
                                 baseName: "ToOther",

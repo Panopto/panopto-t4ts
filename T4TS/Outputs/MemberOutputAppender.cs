@@ -29,9 +29,14 @@ namespace T4TS
 
             bool isOptional = member.Optional;
             TypeName outputName = this.TypeContext.ResolveOutputTypeName(member.Type);
-            
+
+            string name = member.Name;
+            if (this.Settings.MembersToCamelCase)
+            {
+                name = OutputSettings.ToCamelCase(name);
+            }
             output.AppendFormat("{0}{1}: {2}",
-                member.Name,
+                name,
                 (isOptional ? "?" : ""),
                 outputName.QualifiedName
             );
