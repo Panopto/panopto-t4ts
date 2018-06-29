@@ -148,7 +148,7 @@ namespace T4TS.Builders
             out TypeScriptMember member)
         {
             member = null;
-            if (property.Access != vsCMAccess.vsCMAccessPublic)
+            if (!this.settings.MemberAccessTypes.Contains(property.Access))
                 return false;
 
             var getter = property.Getter;
