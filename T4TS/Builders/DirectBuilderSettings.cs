@@ -14,9 +14,14 @@ namespace T4TS.Builders
         public bool CamelCase { get; set; }
         public bool CreateClasses { get; set; }
 
+        // Indicate which member access types to include in the output object.  Note that all output members will be
+        // public.
+        public vsCMAccess[] MemberAccessTypes { get; set; }
+
         public DirectBuilderSettings()
         {
             this.NamespaceToModuleMap = new Dictionary<string, string>();
+            this.MemberAccessTypes = new vsCMAccess[] { vsCMAccess.vsCMAccessPublic };
         }
 
         public string GetModuleNameFromNamespace(CodeNamespace codeNamespace)
