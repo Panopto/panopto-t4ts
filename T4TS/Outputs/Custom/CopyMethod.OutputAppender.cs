@@ -221,7 +221,7 @@ namespace T4TS.Outputs.Custom
                 {
                     TypeName outputName = this.TypeContext.ResolveOutputTypeName(interfaceType);
                     result = String.Format(
-                        "new {0}().{1}({2}.{3})",
+                        "({2}.{3}) ? new {0}().{1}({2}.{3}) : undefined",
                         outputName.QualifiedName,
                         copyMethod.Name,
                         fromObjectName,
