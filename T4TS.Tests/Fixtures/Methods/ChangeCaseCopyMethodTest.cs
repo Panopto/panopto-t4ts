@@ -224,7 +224,7 @@ declare module T4TS {
         Basic: T4TS.BasicModel;
         FromOtherExtendsExplicitModel(source: T4TSTests.OtherType): T4TS.ExtendsExplicitModel
         {
-            this.Basic = new T4TS.BasicModel().FromOtherBasicModel(source.basic);
+            this.Basic = (source.basic) ? new T4TS.BasicModel().FromOtherBasicModel(source.basic) : undefined;
             return this;
         }
         ToOtherExtendsExplicitModel(target: T4TSTests.OtherType): T4TSTests.OtherType
@@ -270,46 +270,46 @@ declare module T4TS {
         FromOtherEnumerableModel(source: T4TSTests.OtherType): T4TS.EnumerableModel
         {
             this.NormalProperty = source.normalProperty;
-            this.PrimitiveArray = new Array(source.primitiveArray.length);
-            for (var index3: number = 0; index3 < source.primitiveArray.length; index3++)
+            this.PrimitiveArray = new Array((source.primitiveArray) ? source.primitiveArray.length : 0);
+            for (var index3: number = 0; index3 < this.PrimitiveArray.length; index3++)
             {
                 this.PrimitiveArray[index3] = source.primitiveArray[index3];
             }
-            this.PrimitiveList = new Array(source.primitiveList.length);
-            for (var index3: number = 0; index3 < source.primitiveList.length; index3++)
+            this.PrimitiveList = new Array((source.primitiveList) ? source.primitiveList.length : 0);
+            for (var index3: number = 0; index3 < this.PrimitiveList.length; index3++)
             {
                 this.PrimitiveList[index3] = source.primitiveList[index3];
             }
-            this.InterfaceArray = new Array(source.interfaceArray.length);
-            for (var index3: number = 0; index3 < source.interfaceArray.length; index3++)
+            this.InterfaceArray = new Array((source.interfaceArray) ? source.interfaceArray.length : 0);
+            for (var index3: number = 0; index3 < this.InterfaceArray.length; index3++)
             {
-                this.InterfaceArray[index3] = new T4TS.BasicModel().FromOtherBasicModel(source.interfaceArray[index3]);
+                this.InterfaceArray[index3] = (source.interfaceArray[index3]) ? new T4TS.BasicModel().FromOtherBasicModel(source.interfaceArray[index3]) : undefined;
             }
-            this.InterfaceList = new Array(source.interfaceList.length);
-            for (var index3: number = 0; index3 < source.interfaceList.length; index3++)
+            this.InterfaceList = new Array((source.interfaceList) ? source.interfaceList.length : 0);
+            for (var index3: number = 0; index3 < this.InterfaceList.length; index3++)
             {
-                this.InterfaceList[index3] = new T4TS.BasicModel().FromOtherBasicModel(source.interfaceList[index3]);
+                this.InterfaceList[index3] = (source.interfaceList[index3]) ? new T4TS.BasicModel().FromOtherBasicModel(source.interfaceList[index3]) : undefined;
             }
-            this.DeepArray = new Array(source.deepArray.length);
-            for (var index3: number = 0; index3 < source.deepArray.length; index3++)
+            this.DeepArray = new Array((source.deepArray) ? source.deepArray.length : 0);
+            for (var index3: number = 0; index3 < this.DeepArray.length; index3++)
             {
-                this.DeepArray[index3] = new Array(source.deepArray[index3].length);
-                for (var index4: number = 0; index4 < source.deepArray[index3].length; index4++)
+                this.DeepArray[index3] = new Array((source.deepArray[index3]) ? source.deepArray[index3].length : 0);
+                for (var index4: number = 0; index4 < this.DeepArray[index3].length; index4++)
                 {
                     this.DeepArray[index3][index4] = source.deepArray[index3][index4];
                 }
             }
-            this.DeepList = new Array(source.deepList.length);
-            for (var index3: number = 0; index3 < source.deepList.length; index3++)
+            this.DeepList = new Array((source.deepList) ? source.deepList.length : 0);
+            for (var index3: number = 0; index3 < this.DeepList.length; index3++)
             {
-                this.DeepList[index3] = new Array(source.deepList[index3].length);
-                for (var index4: number = 0; index4 < source.deepList[index3].length; index4++)
+                this.DeepList[index3] = new Array((source.deepList[index3]) ? source.deepList[index3].length : 0);
+                for (var index4: number = 0; index4 < this.DeepList[index3].length; index4++)
                 {
                     this.DeepList[index3][index4] = source.deepList[index3][index4];
                 }
             }
-            this.Generic = new Array(source.generic.length);
-            for (var index3: number = 0; index3 < source.generic.length; index3++)
+            this.Generic = new Array((source.generic) ? source.generic.length : 0);
+            for (var index3: number = 0; index3 < this.Generic.length; index3++)
             {
                 this.Generic[index3] = source.generic[index3];
             }
@@ -318,46 +318,46 @@ declare module T4TS {
         ToOtherEnumerableModel(target: T4TSTests.OtherType): T4TSTests.OtherType
         {
             target.normalProperty = this.NormalProperty;
-            target.primitiveArray = new Array(this.PrimitiveArray.length);
-            for (var index3: number = 0; index3 < this.PrimitiveArray.length; index3++)
+            target.primitiveArray = new Array((this.PrimitiveArray) ? this.PrimitiveArray.length : 0);
+            for (var index3: number = 0; index3 < target.primitiveArray.length; index3++)
             {
                 target.primitiveArray[index3] = this.PrimitiveArray[index3];
             }
-            target.primitiveList = new Array(this.PrimitiveList.length);
-            for (var index3: number = 0; index3 < this.PrimitiveList.length; index3++)
+            target.primitiveList = new Array((this.PrimitiveList) ? this.PrimitiveList.length : 0);
+            for (var index3: number = 0; index3 < target.primitiveList.length; index3++)
             {
                 target.primitiveList[index3] = this.PrimitiveList[index3];
             }
-            target.interfaceArray = new Array(this.InterfaceArray.length);
-            for (var index3: number = 0; index3 < this.InterfaceArray.length; index3++)
+            target.interfaceArray = new Array((this.InterfaceArray) ? this.InterfaceArray.length : 0);
+            for (var index3: number = 0; index3 < target.interfaceArray.length; index3++)
             {
                 target.interfaceArray[index3] = this.InterfaceArray[index3].ToOtherBasicModel(new T4TSTests.OtherType());
             }
-            target.interfaceList = new Array(this.InterfaceList.length);
-            for (var index3: number = 0; index3 < this.InterfaceList.length; index3++)
+            target.interfaceList = new Array((this.InterfaceList) ? this.InterfaceList.length : 0);
+            for (var index3: number = 0; index3 < target.interfaceList.length; index3++)
             {
                 target.interfaceList[index3] = this.InterfaceList[index3].ToOtherBasicModel(new T4TSTests.OtherType());
             }
-            target.deepArray = new Array(this.DeepArray.length);
-            for (var index3: number = 0; index3 < this.DeepArray.length; index3++)
+            target.deepArray = new Array((this.DeepArray) ? this.DeepArray.length : 0);
+            for (var index3: number = 0; index3 < target.deepArray.length; index3++)
             {
-                target.deepArray[index3] = new Array(this.DeepArray[index3].length);
-                for (var index4: number = 0; index4 < this.DeepArray[index3].length; index4++)
+                target.deepArray[index3] = new Array((this.DeepArray[index3]) ? this.DeepArray[index3].length : 0);
+                for (var index4: number = 0; index4 < target.deepArray[index3].length; index4++)
                 {
                     target.deepArray[index3][index4] = this.DeepArray[index3][index4];
                 }
             }
-            target.deepList = new Array(this.DeepList.length);
-            for (var index3: number = 0; index3 < this.DeepList.length; index3++)
+            target.deepList = new Array((this.DeepList) ? this.DeepList.length : 0);
+            for (var index3: number = 0; index3 < target.deepList.length; index3++)
             {
-                target.deepList[index3] = new Array(this.DeepList[index3].length);
-                for (var index4: number = 0; index4 < this.DeepList[index3].length; index4++)
+                target.deepList[index3] = new Array((this.DeepList[index3]) ? this.DeepList[index3].length : 0);
+                for (var index4: number = 0; index4 < target.deepList[index3].length; index4++)
                 {
                     target.deepList[index3][index4] = this.DeepList[index3][index4];
                 }
             }
-            target.generic = new Array(this.Generic.length);
-            for (var index3: number = 0; index3 < this.Generic.length; index3++)
+            target.generic = new Array((this.Generic) ? this.Generic.length : 0);
+            for (var index3: number = 0; index3 < target.generic.length; index3++)
             {
                 target.generic[index3] = this.Generic[index3];
             }
@@ -414,7 +414,7 @@ declare module T4TS.Tests.Fixtures.Inheritance {
         FromOtherInheritanceModel(source: T4TSTests.OtherType): T4TS.Tests.Fixtures.Inheritance.InheritanceModel
         {
             super.FromOtherOtherInheritanceModel(source);
-            this.OnInheritanceModel = new T4TS.BasicModel().FromOtherBasicModel(source.onInheritanceModel);
+            this.OnInheritanceModel = (source.onInheritanceModel) ? new T4TS.BasicModel().FromOtherBasicModel(source.onInheritanceModel) : undefined;
             return this;
         }
         ToOtherInheritanceModel(target: T4TSTests.OtherType): T4TSTests.OtherType
@@ -430,7 +430,7 @@ declare module T4TS.Tests.Fixtures.Inheritance {
         FromOtherOtherInheritanceModel(source: T4TSTests.OtherType): T4TS.Tests.Fixtures.Inheritance.OtherInheritanceModel
         {
             super.FromOtherModelFromDifferentProject(source);
-            this.OnOtherInheritanceModel = new T4TS.BasicModel().FromOtherBasicModel(source.onOtherInheritanceModel);
+            this.OnOtherInheritanceModel = (source.onOtherInheritanceModel) ? new T4TS.BasicModel().FromOtherBasicModel(source.onOtherInheritanceModel) : undefined;
             return this;
         }
         ToOtherOtherInheritanceModel(target: T4TSTests.OtherType): T4TSTests.OtherType
